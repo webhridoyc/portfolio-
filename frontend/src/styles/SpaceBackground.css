@@ -9,43 +9,97 @@
   pointer-events: none;
 }
 
-/* Starfield layers */
+/* Infinite scrolling starfield layers */
 .starfield {
   position: absolute;
   top: 0;
   left: 0;
-  width: 200%;
-  height: 200%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.starfield::before,
+.starfield::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
   background-image: 
-    radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+    radial-gradient(1px 1px at 20px 30px, #fff, transparent),
     radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
     radial-gradient(1px 1px at 90px 40px, #fff, transparent),
     radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.6), transparent),
-    radial-gradient(2px 2px at 160px 30px, #fff, transparent);
+    radial-gradient(2px 2px at 160px 30px, #fff, transparent),
+    radial-gradient(1px 1px at 200px 90px, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(2px 2px at 250px 150px, #fff, transparent);
   background-repeat: repeat;
-  background-size: 200px 100px;
+  background-size: 300px 200px;
 }
 
-.starfield-1 {
-  animation: moveStars 80s linear infinite;
-  opacity: 1;
+.starfield-1::before,
+.starfield-1::after {
+  animation: infiniteStars1 100s linear infinite;
+}
+
+.starfield-1::after {
+  animation-delay: -50s;
 }
 
 .starfield-2 {
-  animation: moveStars 120s linear infinite reverse;
   opacity: 0.7;
-  background-size: 250px 125px;
+}
+
+.starfield-2::before,
+.starfield-2::after {
+  animation: infiniteStars2 150s linear infinite;
+  background-size: 400px 250px;
+}
+
+.starfield-2::after {
+  animation-delay: -75s;
 }
 
 .starfield-3 {
-  animation: moveStars 160s linear infinite;
   opacity: 0.5;
-  background-size: 300px 150px;
 }
 
-@keyframes moveStars {
-  from { transform: translateX(0) translateY(0); }
-  to { transform: translateX(-200px) translateY(-100px); }
+.starfield-3::before,
+.starfield-3::after {
+  animation: infiniteStars3 200s linear infinite;
+  background-size: 500px 300px;
+}
+
+.starfield-3::after {
+  animation-delay: -100s;
+}
+
+@keyframes infiniteStars1 {
+  from { 
+    transform: translateX(0) translateY(0); 
+  }
+  to { 
+    transform: translateX(-300px) translateY(-200px); 
+  }
+}
+
+@keyframes infiniteStars2 {
+  from { 
+    transform: translateX(0) translateY(-200px); 
+  }
+  to { 
+    transform: translateX(-400px) translateY(50px); 
+  }
+}
+
+@keyframes infiniteStars3 {
+  from { 
+    transform: translateX(100px) translateY(0); 
+  }
+  to { 
+    transform: translateX(-400px) translateY(-300px); 
+  }
 }
 
 /* Dynamic starfield */
@@ -55,11 +109,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-}
-
-@keyframes twinkle {
-  0% { opacity: 0.3; transform: scale(1); }
-  100% { opacity: 1; transform: scale(1.2); }
 }
 
 /* Space planets */
@@ -132,9 +181,21 @@
 }
 
 @keyframes floatPlanet {
-  0% { transform: translateY(0px) translateX(0px); }
-  50% { transform: translateY(-15px) translateX(10px); }
-  100% { transform: translateY(0px) translateX(0px); }
+  0% { 
+    transform: translateY(0px) translateX(0px) scale(1); 
+  }
+  25% { 
+    transform: translateY(-20px) translateX(15px) scale(1.05); 
+  }
+  50% { 
+    transform: translateY(-10px) translateX(-10px) scale(0.95); 
+  }
+  75% { 
+    transform: translateY(25px) translateX(5px) scale(1.1); 
+  }
+  100% { 
+    transform: translateY(0px) translateX(0px) scale(1); 
+  }
 }
 
 /* Space particles */
@@ -207,22 +268,83 @@
   animation-delay: 8s;
 }
 
-@keyframes floatParticle {
-  0%, 100% {
-    transform: translateY(0) translateX(0) scale(1);
-    opacity: 0.4;
-  }
-  25% {
-    transform: translateY(-30px) translateX(20px) scale(1.1);
-    opacity: 0.6;
+.particle-7 {
+  width: 22px;
+  height: 22px;
+  top: 25%;
+  left: 85%;
+  background: radial-gradient(circle, rgba(0, 255, 127, 0.4), transparent);
+  animation-delay: 18s;
+}
+
+.particle-8 {
+  width: 32px;
+  height: 32px;
+  top: 90%;
+  left: 60%;
+  background: radial-gradient(circle, rgba(255, 20, 147, 0.4), transparent);
+  animation-delay: 12s;
+}
+
+/* Cosmic dust animation */
+@keyframes floatDust {
+  0% {
+    transform: translateY(0) translateX(0) rotate(0deg);
+    opacity: 0.2;
   }
   50% {
-    transform: translateY(-15px) translateX(-15px) scale(0.9);
+    transform: translateY(-10px) translateX(5px) rotate(180deg);
     opacity: 0.5;
   }
-  75% {
-    transform: translateY(25px) translateX(10px) scale(1.2);
+  100% {
+    transform: translateY(0) translateX(10px) rotate(360deg);
+    opacity: 0.2;
+  }
+}
+
+/* Enhanced twinkle animation for dynamic stars */
+@keyframes twinkle {
+  0% { 
+    opacity: 0.3; 
+    transform: scale(1) rotate(0deg); 
+    filter: brightness(1);
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.4) rotate(180deg); 
+    filter: brightness(1.5);
+  }
+  100% { 
+    opacity: 0.3; 
+    transform: scale(1) rotate(360deg); 
+    filter: brightness(1);
+  }
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(0) translateX(0) scale(1) rotate(0deg);
+    opacity: 0.4;
+  }
+  20% {
+    transform: translateY(-40px) translateX(30px) scale(1.3) rotate(72deg);
     opacity: 0.7;
+  }
+  40% {
+    transform: translateY(-20px) translateX(-25px) scale(0.8) rotate(144deg);
+    opacity: 0.5;
+  }
+  60% {
+    transform: translateY(35px) translateX(20px) scale(1.1) rotate(216deg);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translateY(10px) translateX(-15px) scale(0.9) rotate(288deg);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(0) translateX(0) scale(1) rotate(360deg);
+    opacity: 0.4;
   }
 }
 
