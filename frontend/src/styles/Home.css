@@ -7,7 +7,7 @@
   justify-content: center;
   position: relative;
   text-align: center;
-  padding: 0 2rem;
+  padding: 6rem 2rem 2rem;
 }
 
 .hero-content {
@@ -16,13 +16,15 @@
   justify-content: space-between;
   width: 100%;
   max-width: 1200px;
-  gap: 4rem;
+  gap: 6rem;
+  margin-top: -3rem;
 }
 
 .hero-text {
   flex: 1;
   text-align: left;
   z-index: 10;
+  max-width: 600px;
 }
 
 .hero-greeting {
