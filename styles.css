@@ -1,0 +1,412 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    overflow: hidden;
+    font-family: 'Courier New', monospace;
+    background: #000;
+}
+
+.space-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 30%, #0f0f23 70%, #000 100%);
+    overflow: hidden;
+}
+
+/* Starfield Animation */
+.starfield {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background-image: 
+        radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+        radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
+        radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+        radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.6), transparent),
+        radial-gradient(2px 2px at 160px 30px, #fff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+}
+
+.starfield-1 {
+    animation: moveStars 50s linear infinite;
+    opacity: 1;
+}
+
+.starfield-2 {
+    animation: moveStars 100s linear infinite;
+    opacity: 0.7;
+    background-size: 300px 150px;
+}
+
+.starfield-3 {
+    animation: moveStars 150s linear infinite;
+    opacity: 0.5;
+    background-size: 400px 200px;
+}
+
+@keyframes moveStars {
+    from {
+        transform: translateX(0) translateY(0);
+    }
+    to {
+        transform: translateX(-200px) translateY(-100px);
+    }
+}
+
+/* Twinkling Stars */
+.starfield::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(1px 1px at 50px 50px, #64ffda, transparent),
+        radial-gradient(1px 1px at 150px 100px, #ff6b9d, transparent),
+        radial-gradient(1px 1px at 250px 150px, #ffd700, transparent);
+    background-size: 300px 200px;
+    animation: twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+/* Planets */
+.planet {
+    position: absolute;
+    border-radius: 50%;
+    box-shadow: inset -10px -10px 0 rgba(0, 0, 0, 0.3);
+    animation: rotatePlanet 20s linear infinite;
+}
+
+.planet-1 {
+    width: 80px;
+    height: 80px;
+    top: 20%;
+    left: 80%;
+    background: radial-gradient(circle at 30% 30%, #ff6b9d, #c44569);
+    box-shadow: 
+        inset -15px -15px 0 rgba(0, 0, 0, 0.3),
+        0 0 50px rgba(255, 107, 157, 0.3);
+    animation: rotatePlanet 25s linear infinite, floatPlanet 15s ease-in-out infinite alternate;
+}
+
+.planet-2 {
+    width: 120px;
+    height: 120px;
+    top: 60%;
+    left: -60px;
+    background: radial-gradient(circle at 30% 30%, #64ffda, #00d2d3);
+    box-shadow: 
+        inset -20px -20px 0 rgba(0, 0, 0, 0.3),
+        0 0 80px rgba(100, 255, 218, 0.4);
+    animation: rotatePlanet 30s linear infinite, floatPlanet 20s ease-in-out infinite alternate-reverse;
+}
+
+.planet-3 {
+    width: 60px;
+    height: 60px;
+    top: 10%;
+    right: -30px;
+    background: radial-gradient(circle at 30% 30%, #ffd700, #f39c12);
+    box-shadow: 
+        inset -10px -10px 0 rgba(0, 0, 0, 0.3),
+        0 0 40px rgba(255, 215, 0, 0.4);
+    animation: rotatePlanet 15s linear infinite, floatPlanet 12s ease-in-out infinite;
+}
+
+@keyframes rotatePlanet {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes floatPlanet {
+    0% { transform: translateY(0px); }
+    100% { transform: translateY(-20px); }
+}
+
+/* Asteroids */
+.asteroid {
+    position: absolute;
+    background: #555;
+    border-radius: 50% 40% 60% 30%;
+    animation: rotateAsteroid 10s linear infinite, driftAsteroid 25s linear infinite;
+}
+
+.asteroid-1 {
+    width: 15px;
+    height: 12px;
+    top: 30%;
+    left: 90%;
+    background: linear-gradient(45deg, #666, #999);
+    animation-duration: 8s, 20s;
+}
+
+.asteroid-2 {
+    width: 20px;
+    height: 18px;
+    top: 70%;
+    left: 85%;
+    background: linear-gradient(45deg, #777, #aaa);
+    animation-duration: 12s, 30s;
+}
+
+.asteroid-3 {
+    width: 10px;
+    height: 8px;
+    top: 45%;
+    left: 95%;
+    background: linear-gradient(45deg, #555, #888);
+    animation-duration: 6s, 15s;
+}
+
+@keyframes rotateAsteroid {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes driftAsteroid {
+    from { transform: translateX(0) translateY(0); }
+    to { transform: translateX(-120vw) translateY(20px); }
+}
+
+/* Shooting Stars */
+.shooting-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: #fff;
+    border-radius: 50%;
+    animation: shootingStar 3s linear infinite;
+}
+
+.shooting-star:nth-child(1) {
+    top: 20%;
+    right: 0;
+    animation-delay: 0s;
+    animation-duration: 2.5s;
+}
+
+.shooting-star:nth-child(2) {
+    top: 40%;
+    right: 0;
+    animation-delay: 1.5s;
+    animation-duration: 3s;
+}
+
+.shooting-star:nth-child(3) {
+    top: 60%;
+    right: 0;
+    animation-delay: 3s;
+    animation-duration: 2s;
+}
+
+.shooting-star:nth-child(4) {
+    top: 80%;
+    right: 0;
+    animation-delay: 4.5s;
+    animation-duration: 2.8s;
+}
+
+.shooting-star::before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #fff, transparent);
+    top: 0;
+    right: 0;
+}
+
+@keyframes shootingStar {
+    0% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+    }
+    70% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-100vw) translateY(50px);
+        opacity: 0;
+    }
+}
+
+/* Nebula Particles */
+.nebula {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: floatParticle 20s ease-in-out infinite;
+}
+
+.particle:nth-child(1) {
+    width: 50px;
+    height: 50px;
+    top: 10%;
+    left: 10%;
+    background: radial-gradient(circle, rgba(255, 107, 157, 0.3), transparent);
+    animation-delay: 0s;
+}
+
+.particle:nth-child(2) {
+    width: 30px;
+    height: 30px;
+    top: 60%;
+    left: 70%;
+    background: radial-gradient(circle, rgba(100, 255, 218, 0.3), transparent);
+    animation-delay: 4s;
+}
+
+.particle:nth-child(3) {
+    width: 40px;
+    height: 40px;
+    top: 30%;
+    left: 60%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.3), transparent);
+    animation-delay: 8s;
+}
+
+.particle:nth-child(4) {
+    width: 25px;
+    height: 25px;
+    top: 80%;
+    left: 20%;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.3), transparent);
+    animation-delay: 12s;
+}
+
+.particle:nth-child(5) {
+    width: 35px;
+    height: 35px;
+    top: 50%;
+    left: 40%;
+    background: radial-gradient(circle, rgba(255, 69, 0, 0.3), transparent);
+    animation-delay: 16s;
+}
+
+@keyframes floatParticle {
+    0%, 100% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-50px) translateX(30px) scale(1.2);
+        opacity: 0.6;
+    }
+}
+
+/* Content Overlay */
+.content-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 100;
+    color: #fff;
+}
+
+.space-title {
+    font-size: 4rem;
+    font-weight: bold;
+    letter-spacing: 0.3em;
+    margin-bottom: 1rem;
+    text-shadow: 
+        0 0 10px #64ffda,
+        0 0 20px #64ffda,
+        0 0 30px #64ffda;
+    animation: pulseTitle 3s ease-in-out infinite alternate;
+}
+
+.space-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    color: #ccc;
+    letter-spacing: 0.1em;
+}
+
+.space-button {
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-family: 'Courier New', monospace;
+    background: linear-gradient(45deg, #ff6b9d, #64ffda);
+    border: none;
+    border-radius: 30px;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+}
+
+.space-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(255, 107, 157, 0.5);
+    background: linear-gradient(45deg, #64ffda, #ff6b9d);
+}
+
+@keyframes pulseTitle {
+    0% {
+        text-shadow: 
+            0 0 10px #64ffda,
+            0 0 20px #64ffda,
+            0 0 30px #64ffda;
+    }
+    100% {
+        text-shadow: 
+            0 0 20px #ff6b9d,
+            0 0 30px #ff6b9d,
+            0 0 40px #ff6b9d;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .space-title {
+        font-size: 2.5rem;
+        letter-spacing: 0.2em;
+    }
+    
+    .space-subtitle {
+        font-size: 1rem;
+    }
+    
+    .space-button {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+    }
+    
+    .planet-1 { width: 60px; height: 60px; }
+    .planet-2 { width: 90px; height: 90px; }
+    .planet-3 { width: 45px; height: 45px; }
+}
+
+/* Performance optimizations */
+.space-container * {
+    will-change: transform;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
