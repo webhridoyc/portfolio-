@@ -1,0 +1,234 @@
+.space-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Starfield layers */
+.starfield {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255, 255, 255, 0.8), transparent),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255, 255, 255, 0.6), transparent),
+    radial-gradient(2px 2px at 160px 30px, #fff, transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+}
+
+.starfield-1 {
+  animation: moveStars 80s linear infinite;
+  opacity: 1;
+}
+
+.starfield-2 {
+  animation: moveStars 120s linear infinite reverse;
+  opacity: 0.7;
+  background-size: 250px 125px;
+}
+
+.starfield-3 {
+  animation: moveStars 160s linear infinite;
+  opacity: 0.5;
+  background-size: 300px 150px;
+}
+
+@keyframes moveStars {
+  from { transform: translateX(0) translateY(0); }
+  to { transform: translateX(-200px) translateY(-100px); }
+}
+
+/* Dynamic starfield */
+.starfield-dynamic {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.3; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Space planets */
+.space-planets {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.space-planet {
+  position: absolute;
+  border-radius: 50%;
+  animation: rotatePlanet 30s linear infinite, floatPlanet 20s ease-in-out infinite alternate;
+}
+
+.planet-1 {
+  width: 60px;
+  height: 60px;
+  top: 15%;
+  left: 85%;
+  background: radial-gradient(circle at 30% 30%, #ff6b9d, #c44569);
+  box-shadow: 
+    inset -10px -10px 0 rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(255, 107, 157, 0.3);
+  animation-duration: 35s, 18s;
+}
+
+.planet-2 {
+  width: 80px;
+  height: 80px;
+  top: 65%;
+  left: -40px;
+  background: radial-gradient(circle at 30% 30%, #64ffda, #00d2d3);
+  box-shadow: 
+    inset -15px -15px 0 rgba(0, 0, 0, 0.3),
+    0 0 60px rgba(100, 255, 218, 0.4);
+  animation-duration: 45s, 25s;
+  animation-direction: reverse, alternate-reverse;
+}
+
+.planet-3 {
+  width: 40px;
+  height: 40px;
+  top: 5%;
+  right: -20px;
+  background: radial-gradient(circle at 30% 30%, #ffd700, #f39c12);
+  box-shadow: 
+    inset -8px -8px 0 rgba(0, 0, 0, 0.3),
+    0 0 30px rgba(255, 215, 0, 0.4);
+  animation-duration: 25s, 15s;
+}
+
+.planet-4 {
+  width: 50px;
+  height: 50px;
+  top: 85%;
+  right: 75%;
+  background: radial-gradient(circle at 30% 30%, #8a2be2, #6a1b9a);
+  box-shadow: 
+    inset -10px -10px 0 rgba(0, 0, 0, 0.3),
+    0 0 35px rgba(138, 43, 226, 0.4);
+  animation-duration: 40s, 22s;
+}
+
+@keyframes rotatePlanet {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes floatPlanet {
+  0% { transform: translateY(0px) translateX(0px); }
+  50% { transform: translateY(-15px) translateX(10px); }
+  100% { transform: translateY(0px) translateX(0px); }
+}
+
+/* Space particles */
+.space-particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.4;
+  animation: floatParticle 25s ease-in-out infinite;
+}
+
+.particle-1 {
+  width: 40px;
+  height: 40px;
+  top: 20%;
+  left: 15%;
+  background: radial-gradient(circle, rgba(255, 107, 157, 0.4), transparent);
+  animation-delay: 0s;
+}
+
+.particle-2 {
+  width: 25px;
+  height: 25px;
+  top: 70%;
+  left: 80%;
+  background: radial-gradient(circle, rgba(100, 255, 218, 0.4), transparent);
+  animation-delay: 5s;
+}
+
+.particle-3 {
+  width: 30px;
+  height: 30px;
+  top: 40%;
+  left: 60%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.4), transparent);
+  animation-delay: 10s;
+}
+
+.particle-4 {
+  width: 20px;
+  height: 20px;
+  top: 80%;
+  left: 25%;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.4), transparent);
+  animation-delay: 15s;
+}
+
+.particle-5 {
+  width: 35px;
+  height: 35px;
+  top: 10%;
+  left: 45%;
+  background: radial-gradient(circle, rgba(255, 69, 0, 0.4), transparent);
+  animation-delay: 20s;
+}
+
+.particle-6 {
+  width: 28px;
+  height: 28px;
+  top: 60%;
+  left: 5%;
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.4), transparent);
+  animation-delay: 8s;
+}
+
+@keyframes floatParticle {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.4;
+  }
+  25% {
+    transform: translateY(-30px) translateX(20px) scale(1.1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-15px) translateX(-15px) scale(0.9);
+    opacity: 0.5;
+  }
+  75% {
+    transform: translateY(25px) translateX(10px) scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+/* Performance optimizations */
+.space-background * {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
