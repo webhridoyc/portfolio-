@@ -29,37 +29,40 @@
 
 .hero-greeting {
   display: block;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: #64ffda;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   letter-spacing: 0.1em;
+  opacity: 0.9;
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-size: clamp(3rem, 8vw, 6rem);
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   line-height: 1.1;
 }
 
 .hero-name {
   display: block;
   animation: pulseGlow 3s ease-in-out infinite alternate;
+  margin-top: 0.5rem;
 }
 
 .hero-subtitle {
-  font-size: clamp(1.2rem, 4vw, 2rem);
+  font-size: clamp(1.4rem, 4vw, 2.2rem);
   color: #ccc;
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
   letter-spacing: 0.05em;
-  min-height: 3rem;
+  min-height: 3.5rem;
+  font-weight: 300;
 }
 
 .hero-description {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #aaa;
-  margin-bottom: 2rem;
-  line-height: 1.6;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
   max-width: 500px;
 }
 
